@@ -1,0 +1,43 @@
+service: demo-api
+app: demo-api
+org: aflorithmic
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage,"staging"}
+  lambdaHashingVersion: 20201221
+  region: eu-west-1
+  environment:
+    APIKEY: ${ssm:/api-demo/api-key/${self:provider.stage}~true}
+
+plugins:
+  - serverless-offline
+  - serverless-bundle
+
+functions:
+  getVoices:
+    handler: lambdas/getVoices.handler
+    timeout: 30
+    events:
+      - http:
+          path: /getVoices
+          method: post
+          cors: true
+  getTemplates:
+    handler: lambdas/getTemplates.handler
+    timeout: 30
+    events:
+      - http:
+          path: /getTemplates
+          method: post
+          cors: true
+  getAudio:
+    handler: lambdas/getAudio.handler
+    timeout: 60
+    events:
+      - http:
+          path: /getAudio
+          method: post
+          cors: true
