@@ -1,7 +1,6 @@
 import { returnError } from "../helpers/returnError";
 
 const apiaudio = require("apiaudio").default;
-
 const { Sound } = apiaudio;
 const apiKey = process.env.APIKEY;
 
@@ -44,7 +43,7 @@ export const handler = async (event) => {
       message: "Problem retrieving the sound templates.",
     });
   }
-
+  console.log("after master");
   // return TTS URL
   return {
     statusCode: 200,

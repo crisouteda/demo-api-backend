@@ -7,9 +7,7 @@ const apiKey = process.env.APIKEY;
 
 export const handler = async (event) => {
   const parsedBody = JSON.parse(event?.body);
-
   const filters = parsedBody?.filters || {};
-
   const debug = parsedBody?.debug || false;
 
   //configure aflr package
