@@ -1,5 +1,6 @@
 import { returnError } from "../helpers/returnError";
 
+const axios = require("axios").default;
 const apiaudio = require("apiaudio").default;
 
 const apiKey = process.env.APIKEY;
@@ -31,7 +32,16 @@ export const handler = async (event) => {
   }
 
   try {
-    const script = await apiaudio.Script.create({ scriptText });
+    axios.post(
+      "https://hooks.slack.com/services/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",
+      {
+        text: `Demo frontend is used with the following parameters; text: ${scriptText}, voice: ${voice}, soundTemplate: ${soundTemplate}`,
+      }
+    );
+    const script = await apiaudio.Script.create({
+      scriptText,
+      projectName: "demofrontend",
+    });
     await apiaudio.Speech.create({
       scriptId: script["scriptId"],
       voice,
