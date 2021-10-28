@@ -41,3 +41,11 @@ functions:
           path: /getAudio
           method: post
           cors: true
+  getRandomScript:
+    handler: lambdas/getRandomScript.handler
+    timeout: 30
+    events:
+      - http:
+          path: /getRandomScript
+          method: post
+          cors: true
