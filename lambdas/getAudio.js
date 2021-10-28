@@ -32,12 +32,14 @@ export const handler = async (event) => {
   }
 
   try {
-    axios.post(
-      "https://hooks.slack.com/services/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",
-      {
-        text: `Demo frontend is used with the following parameters; text: ${scriptText}, voice: ${voice}, soundTemplate: ${soundTemplate}`,
-      }
-    );
+    if (!debug) {
+      axios.post(
+        "https://hooks.slack.com/services/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",
+        {
+          text: `Demo frontend is used with the following parameters; text: ${scriptText}, voice: ${voice}, soundTemplate: ${soundTemplate}`,
+        }
+      );
+    }
     const script = await apiaudio.Script.create({
       scriptText,
       projectName: "demofrontend",
