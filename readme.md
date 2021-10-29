@@ -15,6 +15,16 @@ This endpoint returns voices or templates, already filtered.
   - `debug`: true on staging, `false` on prod
   - `filters`: object containing key-value pairs that are in line with allowed filtering parameters
 
+### `getRandomScript`
+
+This endpoint returns a randon script
+
+- Path: `/getRandomScript`
+- Method: `POST`
+- Body parameters:
+  - `debug`: true on staging, `false` on prod
+  - `category`: (string) name of the category from which the random text is retrieved.
+
 ### `getAudio`
 
 This endpoint returns voices or templates, already filtered.

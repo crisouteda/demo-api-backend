@@ -39,8 +39,6 @@ export const handler = async (event) => {
       message: "Problem retrieving the random scripts.",
     });
   }
-  console.log("after master");
-  // return TTS URL
   return {
     statusCode: 200,
     headers: {
