@@ -1,3 +1,5 @@
+variablesResolutionMode: 20210326
+
 service: demo-api
 app: demo-api
 org: aflorithmic
@@ -10,7 +12,7 @@ provider:
   lambdaHashingVersion: 20201221
   region: eu-west-1
   environment:
-    APIKEY: ${ssm:/api-demo/api-key/${self:provider.stage}~true}
+    APIKEY: ${ssm:/api-demo/api-key/${self:provider.stage}}
 
 plugins:
   - serverless-offline
@@ -35,7 +37,7 @@ functions:
           cors: true
   getAudio:
     handler: lambdas/getAudio.handler
-    timeout: 60
+    timeout: 30
     events:
       - http:
           path: /getAudio
