@@ -31,6 +31,7 @@ export const handler = async (event) => {
     });
   }
 
+  let response;
   try {
     if (!debug) {
       axios.post(
@@ -48,19 +49,11 @@ export const handler = async (event) => {
       scriptId: script["scriptId"],
       voice,
     });
-    const response = await apiaudio.Mastering.create({
+    response = await apiaudio.Mastering.create({
       scriptId: script["scriptId"],
-      soundTemplate: soundTemplate,
+      soundTemplate,
     });
     console.log({ response });
-    return {
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": true,
-      },
-      body: JSON.stringify(response),
-    };
   } catch (e) {
     console.log(e);
     return returnError({
@@ -68,4 +61,12 @@ export const handler = async (event) => {
       message: "Problem mastering the audio.",
     });
   }
+  return {
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
+    body: JSON.stringify(response),
+  };
 };
